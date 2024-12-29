@@ -1,0 +1,23 @@
+
+.container{
+    height: 200px;
+    border-style: solid;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: black;
+}
+
+.style-container{
+    color: red;
+    border-style: groove;
+    border-width: 10px;
+    border-radius: 14px;
+    background-color: azure;
+    border-color: blue;
+    text-decoration: underline;
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
+}
