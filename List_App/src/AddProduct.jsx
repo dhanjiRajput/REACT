@@ -1,74 +1,72 @@
-import React, { useState } from "react";
-const Productlist = () => {
-  const [data, setData] = useState({
-    title: "",
-    price: "",
-    description: "",
-  });
+import { useState } from "react";
+import "./AddProduct.css"
+import Timer from "./Timer";
+const AddProduct = () => {
 
-  const [list, setList] = useState([]);
- 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-  };
+    const [data, setdata] = useState({ image: "", title: "", price: "", description: "", category: "" });
+    const [list, setlist] = useState([]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (data.title && data.price && data.description) {
-      setList([...list, { ...data, id: Date.now() }]);
-
-      setData({
-        title: "",
-        price: "",
-        description: "",
-      });
+    const handleinput = (e) => {
+        const { name, value } = e.target;
+        setdata({ ...data, [name]: value });
     }
-  };
 
-  const handleBuy = (product) => {
-    alert(`You have bought: ${product.title} for $${product.price}`);
-  };
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setlist([...list, { ...data, id: Date.now() }]);
+        setdata({ image: "", title: "", price: "", description: "", category: "" });
+    }
 
- 
+    return (
+        <>
+            <h1 style={{ textAlign: "center" }}>Add Products</h1>
+            <div className="form">
+                <form onSubmit={onSubmit}>
 
-  return (
-    <div className="productList">
-      <h1>Product List</h1>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="title">Title</label>
-        <input type="text" name="title" value={data.title} onChange={handleInput}/>
-        <br />
-        <label htmlFor="price">Price</label>
-        <input
-          type="text" name="price" value={data.price} onChange={handleInput}/>
-        <br />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text" name="description" value={data.description} onChange={handleInput}/>
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+                    <input type="url" id="image" name="image" value={data.image} onChange={handleinput} placeholder="Enter Product Image" />
+                    <br />
+                    <br />
 
-      <h2>Submitted Products</h2>
-      <div>
-        {list.map((product) => (
-          <div key={product.id}>
-            <h2>{product.title}</h2> 
-            <p>Price: ${product.price}</p>
-            <p>{product.description}</p>
-            <button onClick={() => handleBuy(product)}>Buy</button>
-            
-          </div>
-        ))}
-      </div>
-    </div>
-   
-  );
+                    <input type="text" id="title" name="title" value={data.title} onChange={handleinput} placeholder="Enter Product Title" />
+                    <br />
+                    <br />
+
+                    <input type="text" id="price" name="price" value={data.price} onChange={handleinput} placeholder="Enter Product Price" />
+                    <br />
+                    <br />
+
+                    <textarea id="description" name="description" rows="4" cols="39" value={data.description} onChange={handleinput} placeholder="Enter Description" />
+                    <br />
+                    <br />
+                    <select id="category" name="category" value={data.category} onChange={handleinput}>
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="jewelery">Jewelery</option>
+                        <option value="books">Books</option>
+                    </select>
+                    <br />
+                    <br />
+                    <input type="submit"></input>
+                </form>
+            </div>
+
+            <h1 style={{ textAlign: "center",color:"red" }}>Sale Going to Close <Timer/></h1>
+            <div id="main">
+                <div id="box">
+                    {list.map((ele) => (
+                        <div key={ele.id}>
+                            <img src={ele.image}></img>
+                            <h2>{ele.title}</h2>
+                            <p>Price: ${ele.price}</p>
+                            <p>Category: {ele.category}</p>
+                            <p>Description: {ele.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
 };
 
-export default Productlist;
+export default AddProduct;
