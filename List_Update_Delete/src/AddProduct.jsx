@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./AddProduct.css"
 import DisplayProduct from "./DisplayProduct";
 const AddProduct = () => {
-    const [data, setdata] = useState({ image: "", title: "", price: "", description: "", category: "" });
+    const [data, setdata] = useState({ image: "", title: "", price: "", description: "", category: "",iscomplete: false});
     const [list, setlist] = useState([]);
 
     const handleinput = (e) => {
@@ -12,9 +12,9 @@ const AddProduct = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        setlist([...list, { ...data, id: Date.now() }]);
+        setlist([...list, { ...data, id: Date.now(),iscomplete:false }]);
 
-        setdata({ image: "", title: "", price: "", description: "", category: "" });
+        setdata({ image: "", title: "", price: "", description: "", category: "",iscomplete: false});
     };
 
     const delete_product = (id) => {
@@ -43,7 +43,7 @@ const AddProduct = () => {
 
             <div className="display">
                 {list.map((ele) => (
-                    <DisplayProduct {...ele} key={ele.id} ondelete={delete_product} />
+                    <DisplayProduct {...ele} key={ele.id} ondelete={delete_product}/>
                 ))}
             </div>
         </>
