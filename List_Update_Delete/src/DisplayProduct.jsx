@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "./DisplayProduct.css"
-const DisplayProduct=({title,image,price,description,category,id,ondelete,iscomplete})=>{
+const DisplayProduct=({title,image,price,description,category,id,ondelete,iscomplete,onupdate})=>{
 
     const [com,setcom]=useState(iscomplete)
     const complete=()=>{
         setcom(!com);
+    };
+
+    const update=()=>{
+        onupdate({title,image,price,description,category,id});
     };
 
     return(
@@ -16,10 +20,10 @@ const DisplayProduct=({title,image,price,description,category,id,ondelete,iscomp
                 <p>Category: {category}</p>
                 <p>{description}</p>
                 <button>Add to Cart</button>
-                <button>Update</button>
                 <button onClick={()=>ondelete(id)}>Delete</button>   
+                <button onClick={update}>Update</button>   
                 <button onClick={complete}>{com?"Complete":"Pending"}</button>                                                                                                                                                     
-            </div>        
+            </div>
         </>
     );
 };
