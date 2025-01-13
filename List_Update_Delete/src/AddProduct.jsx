@@ -4,7 +4,7 @@ import DisplayProduct from "./DisplayProduct";
 const AddProduct = () => {
     const [data, setdata] = useState({ image: "", title: "", price: "", description: "", category: "", iscomplete: false });
     const [list, setlist] = useState([]);
-    const [id, setId] = useState(-1);
+    const [id, setId] = useState(-1);  
 
     const handleinput = (e) => {
         const { name, value } = e.target;
@@ -54,7 +54,7 @@ const AddProduct = () => {
                     <input type="url" placeholder="Enter Product Image Url" name="image" value={data.image} onChange={handleinput}></input><br /><br />
                     <input type="text" placeholder="Enter Product Title" name="title" value={data.title} onChange={handleinput}></input><br /><br />
                     <input type="number" placeholder="Enter Product Price" name="price" value={data.price} onChange={handleinput}></input><br /><br />
-                    <input type="category" placeholder="Enter Product Category" name="category" value={data.category} onChange={handleinput}></input><br /><br />
+                    <input type="text" placeholder="Enter Product Category" name="category" value={data.category} onChange={handleinput}></input><br /><br />
                     <textarea placeholder="Enter Product Description" name="description" value={data.description} onChange={handleinput} rows={4} cols={39}></textarea><br /><br />
                     <input type="submit"></input>
                 </form>
