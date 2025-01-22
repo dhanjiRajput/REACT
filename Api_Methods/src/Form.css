@@ -1,0 +1,56 @@
+/* Center the form on the page */
+#data {
+    width: 400px;
+    margin: 50px auto;
+    padding: 40px 60px 40px 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the input fields */
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button[type="submit"]:active {
+    background-color: #003d80;
+    transform: scale(1);
+}
+
+/* Add some spacing between form elements */
+form input + input, 
+form input + button {
+    margin-top: 10px;
+}
