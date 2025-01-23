@@ -1,3 +1,10 @@
 {
-  "courses": []
+  "courses": [
+    {
+      "id": "6472",
+      "title": "Full Stack Developer",
+      "fees": "95000",
+      "duration": "15"
+    }
+  ]
 }

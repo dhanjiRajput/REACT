@@ -13,7 +13,6 @@ export const Course = () => {
 
   const deleteCourse=async(id)=>{
     let res=await API.delete(`/courses/${id}`);
-    getCourse();
   };
 
   useEffect(()=>{
