@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "./UseForm.css"
+import "./UseForm.css";
 
 // Define the validation schema for the form
 const validations=z.object({
@@ -28,7 +28,7 @@ const UserForm = () => {
 
     const value=watch();
 
-   const box=(name)=>{
+    const box=(name)=>{
         if(errors[name]){
             return "2px solid red"
         }else if(value && !errors[name]){
@@ -36,7 +36,7 @@ const UserForm = () => {
         }else{
             return "2px solid black"
         }
-   };
+    };
 
     return(
         <>
