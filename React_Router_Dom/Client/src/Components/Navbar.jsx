@@ -1,8 +1,17 @@
 import React from 'react';
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { getUserDetails } from '../userDetails';
 
 const Navbar = () => {
+    const nav = useNavigate();
+    let user = getUserDetails();
+
+    const logout = () => {
+        Cookies.remove("token");
+        nav("/login");
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -20,14 +29,18 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/login">
-                                    Login
-                                </Link>
+                                {
+                                    user ? (
+                                        <ul  onClick={logout}>Logout</ul>
+                                    ) : (<Link className="nav-link" to="/login">Login</Link>)
+                                }
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/signup">
-                                    Signup
-                                </Link>
+                                {
+                                    user ? (
+                                        <ul >{user.name}</ul>
+                                    ) : (<Link className="nav-link" to="/signup"> signup </Link>)
+                                }
                             </li>
                         </ul>
                         <form className="d-flex" role="search">

@@ -17,9 +17,9 @@ exports.createUser = async (req, res) => {
             let token = await jwt.sign({
                 id: user._id,
                 username: user.username,
-                email: user.email,
+                role: user.role,
             }, process.env.key);
-            return res.status(201).json(token);
+            return res.status(201).json({ user, token });
         }
     } catch (error) {
         res.status(500).send({ error: error });
@@ -32,18 +32,18 @@ exports.loginUser = async (req, res) => {
     try {
         if (!user) {
             return res.status(404).send("User not found");
-        } else {
-            let valid = await bcrypt.compare(password, user.password);
-            if (!valid) {
-                return res.status(401).send("Invalid password");
-            }
-            let token = await jwt.sign({
-                id: user._id,
-                username: user.username,
-                email: user.email,
-            }, process.env.key);
-            return res.status(200).json(token);
         }
+        let valid = await bcrypt.compare(password, user.password);
+        if (!valid) {
+            return res.status(401).send("Invalid password");
+        }
+        let token = await jwt.sign({
+            id: user._id,
+            username: user.username,
+            role:user.role,
+        }, process.env.key);
+        res.json({message:"Logged in successfully",token:token})
+
     } catch (error) {
         res.status(500).send({ error: error });
     }
