@@ -23,24 +23,35 @@ const Navbar = () => {
                                     Home
                                 </Link>
                             </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/assign">
+                                        Assign
+                                    </Link>
+                                </li>
+                           
                             <li className="nav-item">
-                                <Link className="nav-link" to="/assign">
-                                    Assign
-                                </Link>
+                                {user ? (
+                                    <p
+                                        className="nav-link"
+                                        onClick={logout}
+                                        style={{ cursor: "pointer" }}
+                                    >
+                                        logout
+                                    </p>
+                                ) : (
+                                    <Link className="nav-link" to="/login">
+                                        Login
+                                    </Link>
+                                )}
                             </li>
                             <li className="nav-item">
-                                {
-                                    user ? (
-                                        <ul  onClick={logout}>Logout</ul>
-                                    ) : (<Link className="nav-link" to="/login">Login</Link>)
-                                }
-                            </li>
-                            <li className="nav-item">
-                                {
-                                    user ? (
-                                        <ul >{user.name}</ul>
-                                    ) : (<Link className="nav-link" to="/signup"> signup </Link>)
-                                }
+                                {user ? (
+                                    <p className="nav-link"> {user.username}</p>
+                                ) : (
+                                    <Link className="nav-link" to="/signup">
+                                        Signup
+                                    </Link>
+                                )}
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
