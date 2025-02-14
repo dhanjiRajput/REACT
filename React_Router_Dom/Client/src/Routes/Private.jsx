@@ -1,6 +1,7 @@
 import React from "react";
-import { getUserDetails } from "../userDetails";
+
 import { Navigate } from "react-router-dom";
+import getUserDetails from "../userDetails";
 
 const Private = ({ children }) => {
   let user = getUserDetails();

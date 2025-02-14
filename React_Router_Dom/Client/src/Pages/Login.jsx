@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import API from '../API';
-const Login = () => {
+import API from "../API";
+import "./Login.css"; // Import the CSS file
 
-  const nav = useNavigate()
+const Login = () => {
+  const nav = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -20,20 +20,20 @@ const Login = () => {
   };
 
   const loginUser = async (data) => {
-
-
-    let res = await API.post("/user/login", data);
-    const { user, token } = res.data;
-    console.log(user, token);
-    Cookies.set("token", token);
-    if (token) {
-      nav("/")
-    } else {
-      alert("You are not logged in")
+    try {
+      let res = await API.post("/user/login", data);
+      const { user, token } = res.data;
+      Cookies.set("token", token);
+      if (token) {
+        nav("/");
+      } else {
+        alert("Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Invalid credentials. Try again.");
     }
-
   };
-
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -45,22 +45,27 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="login-container">
+      <form className="login-form" onSubmit={onSubmit}>
+        <h2>Login</h2>
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={user.email}
           onChange={handleInput}
+          required
         />
         <input
-          type="text"
+          type="password"
           name="password"
+          placeholder="Password"
           value={user.password}
           onChange={handleInput}
-        /><br/><br/>
-
-        <input type="submit" value={"Login"} />
+          required
+        />
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p>
       </form>
     </div>
   );

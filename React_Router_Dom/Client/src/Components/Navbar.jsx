@@ -1,8 +1,9 @@
 import React from 'react';
-import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { getUserDetails } from '../userDetails';
+import getUserDetails from '../userDetails';
+import Ability from '../Role/Ability';
+
 
 const Navbar = () => {
     const nav = useNavigate();
@@ -23,12 +24,15 @@ const Navbar = () => {
                                     Home
                                 </Link>
                             </li>
+                            {Ability(["admin"])?(
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/assign">
-                                        Assign
-                                    </Link>
-                                </li>
-                           
+                                <Link className="nav-link" to="/assign">
+                                    Assign
+                                </Link>
+                            </li>
+                            ):null}
+                            
+
                             <li className="nav-item">
                                 {user ? (
                                     <p

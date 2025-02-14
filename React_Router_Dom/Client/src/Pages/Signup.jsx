@@ -1,65 +1,75 @@
-import React, { useState } from 'react'
-import API from '../API';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import API from "../API";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import "./Signup.css"; // Import the CSS file
 
 export const Signup = () => {
-
   let nav = useNavigate();
-  const [user, setuser] = useState({
+  const [user, setUser] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  const handlesubmit = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setuser({ ...user, [name]: value });
+    setUser({ ...user, [name]: value });
   };
 
   const createUser = async (data) => {
-
-    console.log(data);
-    
-    const res = await API.post("/user/signup", data);
-    const { user, token } = res.data;
-    Cookies.set('token', token);
-    nav("/");
+    try {
+      const res = await API.post("/user/signup", data);
+      const { user, token } = res.data;
+      Cookies.set("token", token);
+      alert("User signed up successfully!");
+      nav("/");
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Signup failed. Please try again.");
+    }
   };
 
-  const submit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     createUser(user);
-    setuser({
+    setUser({
       username: "",
       email: "",
       password: "",
     });
-    alert("user SIgned Successfully..");
   };
 
   return (
-    <div>
-      <form onSubmit={submit}>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
         <input
           type="text"
           name="username"
+          placeholder="Username"
           value={user.username}
-          onChange={handlesubmit}
+          onChange={handleInputChange}
+          required
         />
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={user.email}
-          onChange={handlesubmit}
+          onChange={handleInputChange}
+          required
         />
         <input
-          type="text"
+          type="password"
           name="password"
+          placeholder="Password"
           value={user.password}
-          onChange={handlesubmit}
+          onChange={handleInputChange}
+          required
         />
-        <input type="submit" value={"signup"} />
+        <button type="submit">Sign Up</button>
+        <p>Already have an account? <a href="/login">Login here</a></p>
       </form>
     </div>
   );
