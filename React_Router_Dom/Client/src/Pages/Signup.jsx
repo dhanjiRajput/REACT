@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../API";
+import API from "../Config/API";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css"; // Import the CSS file
@@ -19,7 +19,7 @@ export const Signup = () => {
 
   const createUser = async (data) => {
     try {
-      const res = await API.post("/user/signup", data);
+      const res = await API.post("/users/signup", data);
       const { user, token } = res.data;
       Cookies.set("token", token);
       alert("User signed up successfully!");

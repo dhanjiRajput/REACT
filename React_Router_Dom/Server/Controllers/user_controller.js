@@ -40,11 +40,21 @@ exports.loginUser = async (req, res) => {
         let token = await jwt.sign({
             id: user._id,
             username: user.username,
-            role:user.role,
+            role: user.role,
         }, process.env.key);
-        res.json({message:"Logged in successfully",token:token})
+        res.json({ message: "Logged in successfully", token: token })
 
     } catch (error) {
         res.status(500).send({ error: error });
     }
+};
+
+exports.getAllUsers = async (req, res) => {
+    const { role } = req.query;
+    let query = {};
+    if (role) {
+        query.role = role;
+    }
+    let users = await User.find(query);
+    res.status(200).send(users);
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import API from "../API";
+import API from "../Config/API";
 import "./Login.css"; // Import the CSS file
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
 
   const loginUser = async (data) => {
     try {
-      let res = await API.post("/user/login", data);
+      let res = await API.post("/users/login", data);
       const { user, token } = res.data;
       Cookies.set("token", token);
       if (token) {

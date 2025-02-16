@@ -1,0 +1,84 @@
+/* TaskCard.css */
+
+/* Task Card Container */
+.task-card {
+    width: 320px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Title */
+  .task-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  /* Description */
+  .task-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* Dates */
+  .task-dates {
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-align: center;
+    width: fit-content;
+  }
+  
+  /* Dynamic Status Colors */
+  .status-completed {
+    background: #28a745;
+    color: white;
+  }
+  
+  .status-pending {
+    background: #ffc107;
+    color: #333;
+  }
+  
+  .status-overdue {
+    background: #dc3545;
+    color: white;
+  }
+  
+  /* Assigned User */
+  .assigned-user {
+    font-size: 13px;
+    color: #444;
+    font-weight: 500;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .task-card {
+      width: 90%;
+    }
+  }
+  

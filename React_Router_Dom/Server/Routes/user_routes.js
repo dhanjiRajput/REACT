@@ -1,8 +1,9 @@
 const {Router}=require("express");
 const userController=require("../Controllers/user_controller");
-const userRouter=Router();
+const userRoutes=Router();
 
-userRouter.post("/signup",userController.createUser);
-userRouter.post("/login",userController.loginUser);
+userRoutes.post("/signup",userController.createUser);
+userRoutes.post("/login",userController.loginUser);
+userRoutes.get("/",userController.getAllUsers);
 
-module.exports=userRouter;
+module.exports=userRoutes;
